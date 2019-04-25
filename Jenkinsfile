@@ -16,7 +16,7 @@ node('linux'){
     
     stage ('Deploy') {
       
-        sh ("aws s3 cp $JENKINS_HOME/java-pipeline/builds/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'")
+        sh ("aws s3 cp $JENKINS_HOME/workspace/java-pipeline/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'")
     }
     
     stage('Reports'){
