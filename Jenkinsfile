@@ -1,7 +1,7 @@
 properties([pipelineTriggers([githubPush()])]) 
-git url: 'https://github.com/UST-SEIS665/hw10-seis665-01-spring2019-matchalover.git', branch: 'master'
 
 node('linux'){
+    git url: 'https://github.com/UST-SEIS665/hw10-seis665-01-spring2019-matchalover.git', branch: 'master'
     stage('Unit Tests'){
         steps {
         sh "ant -f test.xml -v"
