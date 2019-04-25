@@ -17,7 +17,7 @@ node('linux'){
     
     stage ('Deploy') {
       
-        sh "aws s3 cp dist/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10 --recursive --exclude '*' --include '*.jar'"
+        sh "aws s3 cp dist/*.jar s3://lydia-hw10 --recursive --exclude '*' --include '*.jar'"
     }
     
     stage('Reports'){
