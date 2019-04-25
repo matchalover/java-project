@@ -2,11 +2,12 @@ properties([pipelineTriggers([githubPush()])])
 
 node('linux'){
     git url: 'https://github.com/UST-SEIS665/hw10-seis665-01-spring2019-matchalover.git', branch: 'master'
+    
     stage('Unit Tests'){
-        steps {
+       
         sh "ant -f test.xml -v"
         junit "reports/result.xml"
-        }
+        
     }
     stage('Build'){
         git 'https://github.com/matchalover/java-project.git'
