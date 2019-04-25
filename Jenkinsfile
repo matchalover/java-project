@@ -1,7 +1,7 @@
 properties([pipelineTriggers([githubPush()])]) 
 node('linux'){
     stage('Build'){
-        git 'https://github.com/rclc/java-project.git'
+        git 'https://github.com/matchalover/java-project.git'
         sh "ant"
     }
     
