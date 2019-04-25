@@ -12,11 +12,7 @@ node('linux'){
     stage('Build'){
 
         sh "ant -f build.xml -v"
-        
-        success {
-          archiveArtifacts artifacts: "$WORKSPACE/target/*.jar"
-        }
- 
+        archiveArtifacts artifacts: "$WORKSPACE/target/*.jar"
     }
     
     stage ('Deploy') {
