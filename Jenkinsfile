@@ -16,7 +16,7 @@ node('linux'){
     
     stage ('Deploy') {
       
-        sh "if ![ -d 'arn::aws:s3://lydia-hw10'], then 'aws mb arn::aws:s3://lydia-hw10'; fi"
+        sh "if ![ -d 'arn::aws:s3://lydia-hw10'], then 'aws mb arn::aws:s3://lydia-hw10';"
         sh ("aws s3 cp $WORKSPACE/target/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'")
      
     }
