@@ -16,7 +16,8 @@ node('linux'){
     }
     
     stage ('Deploy') {
-        sh "if ![ -d 'arn::aws:s3://lydia-hw10'], then 'aws mb arn::aws:s3://lydia-hw10'; fi"
+        sh "if ![ -d 'arn::aws:s3://lydia-hw10'], 
+           then 'aws mb arn::aws:s3://lydia-hw10'"
         sh "aws s3 cp dist/*.jar s3://lydia-hw10 --recursive --exclude '*' --include '*.jar'"
     }
     
