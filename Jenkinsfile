@@ -12,7 +12,7 @@ node('linux'){
     stage('Build'){
         git : 'https://github.com/matchalover/java-project.git'
         sh "ant -f build.xml -v"
-        archiveArtifacts artifacts: "$WORKSPACE/dist/*.jar"
+        archiveArtifacts artifacts: "dist/*.jar"
     }
     
     stage ('Deploy') {
