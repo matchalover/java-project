@@ -12,12 +12,12 @@ node('linux'){
     stage('Build'){
         git : 'https://github.com/matchalover/java-project.git'
         sh "ant -f build.xml -v"
-        archiveArtifacts artifacts: "dist/*.jar"
+        archiveArtifacts artifacts: "target/*.jar"
     }
     
     stage ('Deploy') {
       
-        sh "ls workspace/java-pipeline/dist/"
+        sh "aws s3 cp target/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10 --recursive --exclude '*' --include '*.jar'"
     }
     
     stage('Reports'){
