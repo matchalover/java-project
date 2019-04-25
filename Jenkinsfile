@@ -10,13 +10,18 @@ node('linux'){
         
     }
     stage('Build'){
-        git 'https://github.com/matchalover/java-project.git'
+
         sh "ant -f build.xml -v"
+        post {
+        success {
+          archiveArtifacts artifacts: "$WORKSPACE/target/*.jar"
+        }
+      }
     }
     
     stage ('Deploy') {
       
-        sh ("aws s3 cp /java-pipeline/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'")
+        sh ("aws s3 cp $WORKSPACE/target/rectangle-${env.BUILD_NUMBER}.jar s3://lydia-hw10/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'")
     }
     
     stage('Reports'){
